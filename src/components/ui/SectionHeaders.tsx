@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 type SectionHeadersProps = {
   header: string;
   subHeader: string;
@@ -9,7 +11,7 @@ export const SectionHeaders = ({
   subHeader,
   className,
 }: SectionHeadersProps) => (
-  <div className={`text-center${className ? ` ${className}` : ""}`}>
+  <div className={classNames("text-center", className)}>
     <h3 className="uppercase text-gray-500 font-semibold leading-4">
       {header}
     </h3>

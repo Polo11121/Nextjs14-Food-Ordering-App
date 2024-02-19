@@ -1,5 +1,7 @@
+import classNames from "classnames";
+
 export const buttonVariants = {
-  red: "bg-primary text-white px-8 py-2 rounded-full",
+  red: "bg-primary text-white px-8 py-2 rounded-full hover:bg-white hover:text-primary hover:shadow-md  shadow-black transition-all duration-500",
 };
 
 type ButtonProps = {
@@ -14,9 +16,7 @@ export const Button = ({
 }: Readonly<ButtonProps>) => (
   <button
     {...props}
-    className={`${variant ? buttonVariants[variant] : ""} ${
-      className ? ` ${className}` : ""
-    }`}
+    className={classNames(variant && buttonVariants[variant], className)}
   >
     {children}
   </button>
