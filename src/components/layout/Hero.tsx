@@ -19,7 +19,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="grid grid-cols-hero mt-4">
+    <section className="grid grid-cols-hero">
       <div className=" py-12">
         <h1 className="text-4xl font-semibold">
           Pizza is&nbsp;

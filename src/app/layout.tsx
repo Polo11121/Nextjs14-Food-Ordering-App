@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { Footer, Header } from "@/components/layout";
+import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "@/components/providers";
+import "react-toastify/dist/ReactToastify.css";
+import "react-tooltip/dist/react-tooltip.css";
 import "./globals.css";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
@@ -16,7 +21,14 @@ const RootLayout = ({
 }>) => (
   <html lang="en">
     <body className={roboto.className}>
-      <main className="max-w-4xl mx-auto p-4 border-x-[0.5px]">{children}</main>
+      <AuthProvider>
+        <main className="max-w-4xl mx-auto p-4 border-x-[0.5px] min-h-screen flex flex-col">
+          <Header />
+          <div className="flex-1 my-8">{children}</div>
+          <Footer />
+        </main>
+      </AuthProvider>
+      <ToastContainer />
     </body>
   </html>
 );

@@ -14,6 +14,9 @@ const config: Config = {
       gridTemplateColumns: {
         hero: ".4fr .6fr",
       },
+      height: {
+        container: "calc(100vh - 225px)",
+      },
     },
   },
   plugins: [],

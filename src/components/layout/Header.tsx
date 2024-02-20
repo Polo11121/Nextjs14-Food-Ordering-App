@@ -1,9 +1,10 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui";
+import { Button, buttonVariants } from "@/components/ui";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 
 const ROUTES = [
   {
@@ -26,6 +27,10 @@ const ROUTES = [
 
 export const Header = () => {
   const pathname = usePathname();
+  const { status } = useSession();
+  console.log(status);
+
+  const logoutHandler = () => signOut();
 
   return (
     <header className="flex items-center justify-between">
@@ -53,15 +58,23 @@ export const Header = () => {
         })}
       </nav>
       <nav className="flex items-center gap-4 text-gray-500 font-semibold">
-        <Link
-          href="/login"
-          className="hover:text-primary hover:font-semibold transition-all"
-        >
-          Login
-        </Link>
-        <Link href="/register" className={buttonVariants.red}>
-          Register
-        </Link>
+        {status === "authenticated" ? (
+          <Button variant="red" onClick={logoutHandler}>
+            Logout
+          </Button>
+        ) : (
+          <>
+            <Link
+              href="/login"
+              className="hover:text-primary hover:font-semibold transition-all"
+            >
+              Login
+            </Link>
+            <Link href="/register" className={buttonVariants.red}>
+              Register
+            </Link>
+          </>
+        )}
       </nav>
     </header>
   );
